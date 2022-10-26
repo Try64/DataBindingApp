@@ -1,12 +1,14 @@
 
 package com.shurjomukhi.databindingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                         binding.progress.visibility = View.GONE
                     }
                     binding.dataSource = it.data
+                    responseLoanDetails = it.data
                 }
             }
         })
@@ -55,6 +58,21 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+            btnNextPage.setOnClickListener {
+                startActivity(Intent(this@MainActivity,RegularActivity::class.java))
+            }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        supportActionBar?.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        supportActionBar?.show()
+    }
+
+
 }

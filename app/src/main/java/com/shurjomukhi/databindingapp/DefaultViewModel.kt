@@ -8,14 +8,14 @@ import kotlinx.coroutines.launch
 class DefaultViewModel(private val repository: LendingAppRepository):ViewModel(),LifecycleObserver {
 
 
-    private val loanDetailsMLD: MutableLiveData<DataState<LoanDetails>> = MutableLiveData()
+    private val _loanDetailsMLD: MutableLiveData<DataState<LoanDetails>> = MutableLiveData()
     val loanDetailsLD: LiveData<DataState<LoanDetails>>
-        get() = loanDetailsMLD
+        get() = _loanDetailsMLD
 
     fun getLoanDetails(loanID:String = "28718F55",token:String = "14f9dd0031392c3b45e4c27b4da38b61a18a0fb2"){
         viewModelScope.launch {
             repository.getLoanDetails(loanID,token ).onEach {
-                loanDetailsMLD.value = it
+                _loanDetailsMLD.value = it
             }.launchIn(viewModelScope)
         }
     }

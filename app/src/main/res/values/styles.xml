@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.LendingApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorPrimaryDark</item>
+        <item name="colorSecondaryVariant">@color/colorAccent</item>
+        <item name="colorOnSecondary">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/main_bg</item>
+        <!--    <item name="android:windowBackground">@color/teal_200</item>-->
+        <!--    <item name ="android:colorBackground">@color/purple_700</item>-->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
+        <!-- Customize your theme here. -->
+        <!--    <item name="shapeAppearanceOverlay" >@style/customRoundedImageView</item>-->
+        <item name="color">@color/colorPrimary</item>
+<!--        <item name="android:font" tools:targetApi="o">@font/roboto_regular</item>-->
+<!--        <item name="android:fontFamily">@font/roboto_regular</item>-->
+        <item name="android:forceDarkAllowed" tools:targetApi="q" tools:ignore="NewApi"> false </item>
+
+        <item name="spinnerStyle">@style/Widget.App.Spinner</item>
+        <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
+    </style>
+
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="@style/Theme.LendingApp" />
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">8%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+<!--    <style name="Theme.LendingAppCustom" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryVariant">@color/colorAccent</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorSecondaryVariant">@color/colorAccent</item>-->
+<!--        <item name="colorOnSecondary">@color/colorAccent</item>-->
+<!--        <item name="android:windowBackground">@drawable/main_bg</item>-->
+<!--        &lt;!&ndash;    <item name="android:windowBackground">@color/teal_200</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <item name ="android:colorBackground">@color/purple_700</item>&ndash;&gt;-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:forceDarkAllowed" tools:targetApi="q" tools:ignore="NewApi"> false </item>-->
+<!--        &lt;!&ndash;    <item name="shapeAppearanceOverlay" >@style/customRoundedImageView</item>&ndash;&gt;-->
+<!--        <item name="color">@color/colorPrimary</item>-->
+<!--        &lt;!&ndash;        <item name="android:font" tools:targetApi="o">@font/roboto_regular</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="android:fontFamily">@font/roboto_regular</item>&ndash;&gt;-->
+
+
+
+<!--    </style>-->
+
+    <style name="my_dialog_theme"  parent="android:Theme.Material.Dialog">
+        <item name="android:datePickerStyle">@style/MySpinnerDatePicker</item>
+        <item name="colorOnPrimary">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/custom_design_icon</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="MySpinnerDatePicker" parent="android:Widget.Material.DatePicker">
+
+        <item name="android:datePickerMode">spinner</item>
+        <item name="android:background">@drawable/custom_background_dpd</item>
+
+    </style>
+    <style name="MaterialButtonIcon" parent="Widget.MaterialComponents.Button">
+        <item name="iconGravity">end</item>
+        <item name="android:background">@drawable/material_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:padding">10dp</item>
+        <item name="icon">@drawable/material_button_icon</item>
+    </style>
+    <style name="MaterialButtonWithoutIcon" parent="Widget.MaterialComponents.Button">
+        <item name="android:background">@drawable/material_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">10dp</item>
+        <item name="icon">@null</item>
+    </style>
+
+    <style name="customChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/color_chip</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="checkedIconTint">@color/white</item>
+        <item name="rippleColor">@color/white</item>
+        <item name="chipStrokeColor">#0f000000</item>
+        <item name="closeIconTint">#FFFFFF</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- ShapeableImageView Style -->
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="Widget.App.Spinner" parent="@style/Widget.AppCompat.Spinner">
+        <item name="overlapAnchor">true</item>
+        <item name="android:spinnerMode">dropdown</item>
+
+    </style>
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+</resources>

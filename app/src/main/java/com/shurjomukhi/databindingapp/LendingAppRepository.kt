@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 class LendingAppRepository(
-	private val api: APIServer
+	private val api: ApiClient
 ) {
 	suspend fun getLoanDetails(loanID:String = "28718F55",token:String = "14f9dd0031392c3b45e4c27b4da38b61a18a0fb2"):Flow<DataState<LoanDetails>> = flow {
 		emit(DataState.Loading)

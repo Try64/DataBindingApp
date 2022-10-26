@@ -1,5 +1,8 @@
 package com.shurjomukhi.databindingapp
 
+import android.content.Intent
+import android.view.View
+import androidx.core.content.ContextCompat.startActivity
 import java.math.BigInteger
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -8,6 +11,9 @@ import java.text.ParsePosition
 object Util {
     public const val BASE_URL_LENDING = "http://192.168.10.130:8080/mos/"
     public const val TAKA_SYMBLE = "৳"
+
+
+    var responseLoanDetails:LoanDetails? = null
 
 
     fun getIntegerFromDouble(doubleAmount: Double?): Int {
@@ -29,7 +35,7 @@ object Util {
 
     fun getMoneyFormat(value: String): String {
         val df = DecimalFormat("##,##,##,###.##")
-        return TAKA_SYMBLE + " " + df.format(getNumeric(value)?.let { BigInteger(it) })
+        return TAKA_SYMBLE + " " + df.format(BigInteger(getNumeric(value)))
     }
 
     fun isNumeric(str: String): Boolean {
@@ -67,6 +73,12 @@ object Util {
             }
         }
         return false
+    }
+
+    class ReturnHomeClickHandler {
+        fun onClicked(view: View) {
+            view.context.applicationContext.startActivity(Intent(view.context, MainActivity::class.java))
+        }
     }
 
 

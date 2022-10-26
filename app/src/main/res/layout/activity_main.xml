@@ -10,13 +10,13 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white"
         android:id="@+id/base_top_line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
         android:layout_marginBottom="10dp"
         android:visibility="visible"
+        android:background="@drawable/main_bg"
         tools:context=".MainActivity">
 
         <ProgressBar
@@ -29,14 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Get Details"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
@@ -101,9 +93,11 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="vertical"
+            android:layout_marginBottom="64dp"
             android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/baseInfo">
@@ -143,12 +137,12 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
                             android:ellipsize="start"
-                            android:text="@{dataSource.Borrower.familySpendCost.toString()}"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.familySpendCost.toString()}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -173,12 +167,12 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
                             android:ellipsize="start"
-                            android:text="@{dataSource.Borrower.totalIncome.toString()}"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.totalIncome.toString()}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -202,13 +196,13 @@
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
-                            android:text="@{dataSource.Borrower.otherIncome.toString()}"
                             android:ellipsize="start"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.otherIncome.toString()}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -233,12 +227,12 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
                             android:ellipsize="start"
-                            android:text="@{dataSource.Borrower.existingLoanAmount.toString()}"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.existingLoanAmount.toString()}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -263,12 +257,12 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
                             android:ellipsize="start"
-                            android:text="@{dataSource.Borrower.existingEmiAmount.toString()}"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.existingEmiAmount.toString()}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -293,13 +287,31 @@
                             android:layout_height="40dp"
                             android:layout_weight="0.5"
                             android:ellipsize="start"
-                            android:text="@{dataSource.Borrower.otherLiabilityAmount.toString()}"
                             android:gravity="end|center_vertical"
                             android:inputType="numberDecimal"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:text="@{dataSource.Borrower.otherLiabilityAmount.toString()}" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Get Details" />
+
+                    <Button
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="end"
+                        android:id="@+id/btnNextPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Next Page"/>
+
                 </LinearLayout>
             </ScrollView>
 

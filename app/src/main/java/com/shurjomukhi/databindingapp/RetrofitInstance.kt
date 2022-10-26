@@ -54,8 +54,8 @@ object RetrofitInstance {
     }
 
 
-    val apiForLendingApp: APIServer by lazy {
-        retrofit.create(APIServer::class.java)
+    val apiForLendingApp: ApiClient by lazy {
+        retrofit.create(ApiClient::class.java)
     }
 
 

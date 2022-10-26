@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 
-interface APIServer {
+interface ApiClient {
 
 
     @GET("api/v1/loans/{loanID}")//Assert matches API Doc ?: TRUE
