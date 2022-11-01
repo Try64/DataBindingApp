@@ -9,11 +9,11 @@ import coil.load
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityDynamicBinding
 
-class DynamicActivity : AppCompatActivity(),View.OnClickListener{
+class DynamicActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityDynamicBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this@DynamicActivity,R.layout.activity_dynamic)
+        binding = DataBindingUtil.setContentView(this@DynamicActivity, R.layout.activity_dynamic)
         binding.buttonClickHandler = this
 
         /**
@@ -54,7 +54,12 @@ class DynamicActivity : AppCompatActivity(),View.OnClickListener{
     }
 
     override fun onClick(p0: View?) {
-        startActivity(Intent(this@DynamicActivity, MainActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        startActivity(
+            Intent(
+                this@DynamicActivity,
+                MainActivity::class.java
+            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
 

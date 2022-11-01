@@ -12,17 +12,17 @@ import com.google.android.material.textfield.TextInputEditText
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 
 class RegularActivity : AppCompatActivity() {
-    private lateinit var dynamicButton:Button
+    private lateinit var dynamicButton: Button
 
-    private lateinit var profileImage:ImageView
-    private lateinit var nameTV:TextView
-    private lateinit var phoneTV:TextView
-    private lateinit var loanTV:TextView
-    private lateinit var amountTenureTV:TextView
+    private lateinit var profileImage: ImageView
+    private lateinit var nameTV: TextView
+    private lateinit var phoneTV: TextView
+    private lateinit var loanTV: TextView
+    private lateinit var amountTenureTV: TextView
     private lateinit var milkRadioButton: RadioButton
     private lateinit var meatRadioButton: RadioButton
-    private lateinit var loanTenureET:TextInputEditText
-    private lateinit var loanAmountET:TextInputEditText
+    private lateinit var loanTenureET: TextInputEditText
+    private lateinit var loanAmountET: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,33 +35,31 @@ class RegularActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadData():Unit {
+    private fun loadData(): Unit {
         profileImage.load(responseLoanDetails?.borrower?.person?.photoUrlOnNid)
         nameTV.text = responseLoanDetails!!.borrower!!.person!!.fullNameEn ?: "Empty"
-        phoneTV.text = "Phone: "+(responseLoanDetails!!.borrower!!.person!!.contactInfo?.primaryPhoneNumber ?: "Empty")
-        loanTV.text = "Loan ID: "+(responseLoanDetails!!.loanId ?: "Empty")
+        phoneTV.text =
+            "Phone: " + (responseLoanDetails!!.borrower!!.person!!.contactInfo?.primaryPhoneNumber
+                ?: "Empty")
+        loanTV.text = "Loan ID: " + (responseLoanDetails!!.loanId ?: "Empty")
 
-        if(responseLoanDetails?.amount != null && responseLoanDetails?.tenure != null){
+        if (responseLoanDetails?.amount != null && responseLoanDetails?.tenure != null) {
             responseLoanDetails?.tenure?.let {
                 loanTenureET.setText(it.toString())
             }
             responseLoanDetails?.amount?.let {
                 loanAmountET.setText(it.toString())
             }
-            amountTenureTV.text = "Amount = ${responseLoanDetails?.amount} BDT, Tenure = ${responseLoanDetails?.tenure} Months"
-        }else{
+            amountTenureTV.text =
+                "Amount = ${responseLoanDetails?.amount} BDT, Tenure = ${responseLoanDetails?.tenure} Months"
+        } else {
             amountTenureTV.text = "Amount is Empty and Tenure is Empty"
         }
 
         responseLoanDetails?.loanObjective?.let {
-            if(it.isNotEmpty()){
-                if(it == "MEAT_PRODUCTION"){
-                    meatRadioButton.isChecked = true
-                    milkRadioButton.isChecked = false
-                }else if(it == "MILK_PRODUCTION"){
-                    meatRadioButton.isChecked = false
-                    milkRadioButton.isChecked = true
-                }
+            if (it.isNotEmpty()) {
+                meatRadioButton.isChecked = it == "MEAT_PRODUCTION";
+                milkRadioButton.isChecked = it == "MILK_PRODUCTION";
             }
         }
 
@@ -69,7 +67,7 @@ class RegularActivity : AppCompatActivity() {
     }
 
 
-    private fun initViews():Unit{
+    private fun initViews(): Unit {
 
         dynamicButton = findViewById<Button>(R.id.btnDynamicPage)
         profileImage = findViewById<ImageView>(R.id.borrowerImage)
@@ -83,8 +81,8 @@ class RegularActivity : AppCompatActivity() {
         loanAmountET = findViewById<TextInputEditText>(R.id.loanAmount)
 
 
-        dynamicButton.setOnClickListener{
-            startActivity(Intent(this@RegularActivity,DynamicActivity::class.java))
+        dynamicButton.setOnClickListener {
+            startActivity(Intent(this@RegularActivity, DynamicActivity::class.java))
         }
     }
 
