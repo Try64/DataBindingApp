@@ -82,4 +82,10 @@ object Util {
     }
 
 
+    enum class ViewOperation{
+        MODE_EDIT,
+        VIEW_DATA
+    }
+
+
 }

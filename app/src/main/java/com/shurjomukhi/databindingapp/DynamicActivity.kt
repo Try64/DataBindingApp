@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import coil.load
+import com.google.gson.Gson
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityDynamicBinding
 
@@ -54,12 +55,30 @@ class DynamicActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        startActivity(
-            Intent(
-                this@DynamicActivity,
-                MainActivity::class.java
-            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        )
+
+        val intent = Intent(this,ProposedActivity::class.java)
+        val string = ItemViewDefinition(ItemViewDefinition.ViewType.TextView.name,"orderID", "Order ID","Input your order Id",false,"")
+        val string1 = ItemViewDefinition(ItemViewDefinition.ViewType.EditText.name,"Name", "Input your name","Input your order Id",false,"")
+        val string0 = ItemViewDefinition(ItemViewDefinition.ViewType.Button.name,"orderID", "FINish","Input your order Id",false,"")
+        val list:ArrayList<ItemViewDefinition> = ArrayList()
+        list.add(string)
+        list.add(string0)
+        list.add(string1)
+        val ir = GsonObjToShip(list = list)
+        val str:String = Gson().toJson(ir)
+        intent.putExtra(Util.ViewOperation.VIEW_DATA.name,str)
+        startActivity(intent)
+
+
+
+
+
+//        startActivity(
+//            Intent(
+//                this@DynamicActivity,
+//                MainActivity::class.java
+//            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//        )
     }
 
 
