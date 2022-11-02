@@ -4,9 +4,16 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class ItemViewDefinition(
+data class FieldDefinition(
+
+    /**
+     * Type of field ie. TextInput, ImageView...
+     * @see android.widget.TextView
+     * @see android.widget.ImageView
+     * @see android.widget.Button
+     */
     var itemViewType:String?,
-//    var dataStoreClass: Class<*>? = null,
+
     var placeholderInObject:String?,
     var itemViewName:String?,
     var itemViewHint:String?,
@@ -46,12 +53,12 @@ data class ItemViewDefinition(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<ItemViewDefinition> {
-        override fun createFromParcel(parcel: Parcel): ItemViewDefinition {
-            return ItemViewDefinition(parcel)
+    companion object CREATOR : Parcelable.Creator<FieldDefinition> {
+        override fun createFromParcel(parcel: Parcel): FieldDefinition {
+            return FieldDefinition(parcel)
         }
 
-        override fun newArray(size: Int): Array<ItemViewDefinition?> {
+        override fun newArray(size: Int): Array<FieldDefinition?> {
             return arrayOfNulls(size)
         }
     }

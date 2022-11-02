@@ -1,5 +1,5 @@
 package com.shurjomukhi.databindingapp
 
 data class ParcelListViews(
-    val     list: MutableList<ItemViewDefinition>
+    val     list: MutableList<FieldDefinition>
 )

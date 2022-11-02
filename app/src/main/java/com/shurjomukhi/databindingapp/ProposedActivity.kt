@@ -16,7 +16,7 @@ import com.google.gson.Gson
 class ProposedActivity : BaseIOActivity() {
 
     private var isEdit = false
-    private lateinit var listViews:GsonObjToShip
+    private lateinit var listViews:DataSourceObject
     private var viewObjArray:ArrayList<View> = ArrayList()
     private lateinit var container:LinearLayout
 
@@ -36,7 +36,7 @@ class ProposedActivity : BaseIOActivity() {
             isEdit = intent.getBooleanExtra(Util.ViewOperation.MODE_EDIT.name,false)
         }
         if(intent.hasExtra(Util.ViewOperation.VIEW_DATA.name)){
-            listViews = Gson().fromJson(intent.getStringExtra(Util.ViewOperation.VIEW_DATA.name),GsonObjToShip::class.java)
+            listViews = Gson().fromJson(intent.getStringExtra(Util.ViewOperation.VIEW_DATA.name),DataSourceObject::class.java)
         }
 
 
@@ -54,13 +54,14 @@ class ProposedActivity : BaseIOActivity() {
 
                 viewObjArray.clear()
 
-                for (item:ItemViewDefinition in listOfViewDefinition){
+                for (item:FieldDefinition in listOfViewDefinition){
 
                     when(item.itemViewType){
 
-                        ItemViewDefinition.ViewType.TextView.name -> {
+                        FieldDefinition.ViewType.TextView.name -> {
 
                             val view = LayoutInflater.from(this).inflate(R.layout.text_view_material,null)
+
                             view?.let { notNullView ->
                                 val til:TextInputLayout = notNullView.findViewById(R.id.til)
                                 val tv:TextView = notNullView.findViewById(R.id.textView)
@@ -72,26 +73,29 @@ class ProposedActivity : BaseIOActivity() {
                                     }
                                 }
                                 til.tag = "TV_"+item.itemViewHint
-                                //til.setTag(0,"TV_"+item.itemViewHint)
                                 viewObjArray.add(til)
                                 container.addView(til)
                             }
                         }
-                        ItemViewDefinition.ViewType.Button.name -> {
+                        FieldDefinition.ViewType.Button.name -> {
 
                             val view = LayoutInflater.from(this).inflate(R.layout.button_material,null)
+
                             view?.let { notNullView ->
                                 val button:Button = notNullView.findViewById(R.id.button)
                                 button.text = item.itemViewName
+                                button.foregroundGravity = Gravity.CENTER
                                 button.setOnClickListener{
                                     for(savedItem:View in viewObjArray){
                                         if(savedItem.tag.toString().startsWith("ET")){
                                             val inp = savedItem.findViewById<TextInputEditText>(R.id.editText)
                                             Toast.makeText(this,inp.text.toString(),Toast.LENGTH_LONG).show()
+
                                         }
                                     }
                                     finish()
                                 }
+
                                 button.gravity = Gravity.CENTER
                                 button.apply {
                                     if(parent != null){
@@ -104,7 +108,7 @@ class ProposedActivity : BaseIOActivity() {
                                 container.addView(button)
                             }
                         }
-                        ItemViewDefinition.ViewType.EditText.name -> {
+                        FieldDefinition.ViewType.EditText.name -> {
                             val view = LayoutInflater.from(this).inflate(R.layout.edit_text_material,null)
                             view?.let{
                                 val til = view.findViewById<TextInputLayout>(R.id.tiLayout)
@@ -131,9 +135,9 @@ class ProposedActivity : BaseIOActivity() {
              */
             listViews.list.let {
                 viewObjArray.clear()
-                for (item:ItemViewDefinition in it){
+                for (item:FieldDefinition in it){
                     when(item.itemViewType){
-                        ItemViewDefinition.ViewType.TextView.name -> {
+                        FieldDefinition.ViewType.TextView.name -> {
                             val view = LayoutInflater.from(this).inflate(R.layout.text_view_material,null)
                             view?.let { notNullView ->
                                 val til:TextInputLayout = notNullView.findViewById(R.id.til)
@@ -149,7 +153,7 @@ class ProposedActivity : BaseIOActivity() {
                                 container.addView(til)
                             }
                         }
-                        ItemViewDefinition.ViewType.Button.name -> {
+                        FieldDefinition.ViewType.Button.name -> {
                             val view = LayoutInflater.from(this).inflate(R.layout.button_material,null)
                             view?.let { notNullView ->
                                 val button:Button = notNullView.findViewById(R.id.button)

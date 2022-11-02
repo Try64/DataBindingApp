@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 open class BaseIOActivity : AppCompatActivity() {
 
-    private lateinit var views:MutableList<ItemViewDefinition>
+    private lateinit var views:MutableList<FieldDefinition>
 
-    fun setViews(views:MutableList<ItemViewDefinition>){
+    fun setViews(views:MutableList<FieldDefinition>){
         this@BaseIOActivity.views = views
     }
 }
