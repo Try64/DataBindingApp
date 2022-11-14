@@ -32,6 +32,7 @@ data class FieldDefinition(
     ) {
     }
 
+    // TODO the code numbers are useless. Only the name matters
     enum class ViewType(code:Int){
         TextView(0),
         EditText(1),
