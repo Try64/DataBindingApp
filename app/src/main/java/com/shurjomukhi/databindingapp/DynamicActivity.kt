@@ -3,10 +3,11 @@ package com.shurjomukhi.databindingapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import coil.load
-import com.google.gson.Gson
+import com.shurjomukhi.databindingapp.Util.ObjectV0
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityDynamicBinding
 
@@ -56,29 +57,127 @@ class DynamicActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
 
-        val intent = Intent(this,ProposedActivity::class.java)
-        val string = FieldDefinition(FieldDefinition.ViewType.TextView.name,"orderID", "Order ID","Input your order Id",false,"")
-        val string1 = FieldDefinition(FieldDefinition.ViewType.EditText.name,"Name", "Input your name","Input your order Id",false,"")
-        val string0 = FieldDefinition(FieldDefinition.ViewType.Button.name,"orderID", "FINish","Input your order Id",false,"")
-        val list:ArrayList<FieldDefinition> = ArrayList()
-        list.add(string)
-        list.add(string0)
-        list.add(string1)
-        val ir = DataSourceObject(list = list)
-        val str:String = Gson().toJson(ir)
-        intent.putExtra(Util.ViewOperation.VIEW_DATA.name,str)
-        startActivity(intent)
+
+        /**
+         * Lets Generate First View for Farm Information
+         */
+
+        var dataSourceObjectV0: DataSourceObjectV0? = null
+
+        dataSourceObjectV0 = DataSourceObjectV0(
+            listOfViews = null,
+            MainActivity::class.java,
+            isModeEdit = true,
+            isModeView = false,
+            submitOnline = false,
+            endPoint = null,
+            dataModel = null,
+            pageTitle = "Edit Mode",
+            onBackPressed = {
+                Toast.makeText(applicationContext, "You are pressing Back", Toast.LENGTH_LONG)
+                    .show()
+            }
+        )
+
+        /**First view all data
+         *
+         */
+        val field0 = FieldDefinitionV0(isAmountField = false,
+            itemViewType = FieldDefinition.ViewType.TextView.name,
+            dropDownValues = null,
+            placeholderInObject = "name",
+            itemViewName = "Username",
+            itemViewHint = "Username",
+            itemValue = "Md. Abul Hasnat",
+            isOptional = true,
+            uniqueIdentifier = "user.name",
+            url = "",
+            onSelectionDropDown = {},
+            validationCheck = { strUserName ->
+                true
+            })
+
+        val field1 = FieldDefinitionV0(isAmountField = true,
+            itemViewType = FieldDefinition.ViewType.EditText.name,
+            dropDownValues = null,
+            placeholderInObject = null,
+            itemViewName = "Monthly Income",
+            itemViewHint = "Monthly Income",
+            itemValue = "",
+            isOptional = true,
+            uniqueIdentifier = "",
+            url = "",
+            onSelectionDropDown = {},
+            validationCheck = { url ->
+                var flag = true
+                if (Util.getNumeric(url).trim().length < 6) {
+                    flag = false
+                    Toast.makeText(
+                        applicationContext,
+                        "Length must be more then 6",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                flag
+            })
+
+        val field2 = FieldDefinitionV0(isAmountField = true,
+            itemViewType = FieldDefinition.ViewType.DropDown.name,
+            dropDownValues = arrayListOf("Dhaka", "Cumilla", "Feni", "Chadpur"),
+            placeholderInObject = null,
+            itemViewName = "District",
+            itemViewHint = "District",
+            itemValue = "Dhaka",
+            isOptional = true,
+            uniqueIdentifier = "",
+            url = "",
+            onSelectionDropDown = {},
+            validationCheck = { url ->
+                var flag = true
+                if (url == "Choose") {
+                    Toast.makeText(
+                        applicationContext,
+                        "Please select your district",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    flag = false
+                }
+                if (url == "Feni") {
+                    Toast.makeText(applicationContext, "Feni is not allowed", Toast.LENGTH_LONG)
+                        .show()
+                    flag = false
+                }
+                flag
+
+            })
+        val field3 = FieldDefinitionV0(isAmountField = false,
+            itemViewType = FieldDefinition.ViewType.Button.name,
+            dropDownValues = null,
+            placeholderInObject = null,
+            itemViewName = "Go To Home",
+            itemViewHint = "dismiss",
+            itemValue = "",
+            isOptional = true,
+            uniqueIdentifier = "",
+            url = "",
+            onSelectionDropDown = {},
+            validationCheck = { url ->
+                false
+            })
+
+        val array = ArrayList<FieldDefinitionV0>()
+        array.add(field1)
+        array.add(field2)
+        array.add(field3)
+        dataSourceObjectV0.listOfViews = array
+        dataSourceObjectV0.isModeEdit = true
 
 
+        ObjectV0 = dataSourceObjectV0
 
+        val intent0 = Intent(this@DynamicActivity, ProposedActivity::class.java)
+        startActivity(intent0)
 
-
-//        startActivity(
-//            Intent(
-//                this@DynamicActivity,
-//                MainActivity::class.java
-//            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//        )
     }
 
 

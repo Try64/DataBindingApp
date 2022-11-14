@@ -2,7 +2,6 @@ package com.shurjomukhi.databindingapp
 
 import android.content.Intent
 import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import java.math.BigInteger
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -11,6 +10,10 @@ import java.text.ParsePosition
 object Util {
     public const val BASE_URL_LENDING = "http://192.168.10.130:8080/mos/"
     public const val TAKA_SYMBLE = "৳"
+
+    var ObjectV0:DataSourceObjectV0? = null
+
+
 
 
     var responseLoanDetails:LoanDetails? = null
@@ -84,7 +87,7 @@ object Util {
 
     enum class ViewOperation{
         MODE_EDIT,
-        VIEW_DATA
+        MODE_VIEW
     }
 
 
