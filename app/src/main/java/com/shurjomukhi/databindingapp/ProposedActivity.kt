@@ -155,7 +155,7 @@ class ProposedActivity : BaseIOActivity() {
                                         }
                                         if(flag){
                                             Toast.makeText(applicationContext,"Making Network Call",Toast.LENGTH_LONG).show()
-                                            Intent(this@ProposedActivity,_object.goToNextClass).apply {
+                                            Intent(this@ProposedActivity,_object.destinationActivity).apply {
                                                 this.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                                 startActivity(this)
                                             }
@@ -232,7 +232,7 @@ class ProposedActivity : BaseIOActivity() {
 
                                     /** Setting Up destinition page Provided by Previous page */
                                     button.setOnClickListener{
-                                        val intent = Intent(this@ProposedActivity,_object.goToNextClass)
+                                        val intent = Intent(this@ProposedActivity,_object.destinationActivity)
                                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                         startActivity(intent)
                                     }

@@ -66,13 +66,13 @@ class DynamicActivity : AppCompatActivity(), View.OnClickListener {
 
         dataSourceObjectV0 = DataSourceObjectV0(
             listOfViews = null,
-            MainActivity::class.java,
+            destinationActivity = MainActivity::class.java,// TODO: Should
             isModeEdit = true,
             isModeView = false,
             submitOnline = false,
             endPoint = null,
             dataModel = null,
-            pageTitle = "Edit Mode",
+            pageTitle = "Edit Mode",// TODO: Page title should be controlled by the owner by default
             onBackPressed = {
                 Toast.makeText(applicationContext, "You are pressing Back", Toast.LENGTH_LONG)
                     .show()
