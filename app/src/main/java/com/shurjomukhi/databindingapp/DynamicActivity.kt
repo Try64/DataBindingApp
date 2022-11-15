@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import coil.load
+import com.google.gson.Gson
 import com.shurjomukhi.databindingapp.Util.ObjectV0
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityDynamicBinding
@@ -175,7 +176,11 @@ class DynamicActivity : AppCompatActivity(), View.OnClickListener {
 
         ObjectV0 = dataSourceObjectV0
 
-        val intent0 = Intent(this@DynamicActivity, ProposedActivity::class.java)
+       // val str = Gson().toJson(ObjectV0)
+
+
+        val intent0 = Intent(this@DynamicActivity, ProposedActivity0::class.java)
+        intent0.putExtra("DATA", ObjectV0)
         startActivity(intent0)
 
     }
