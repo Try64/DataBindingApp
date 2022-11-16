@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import coil.load
-import com.google.gson.Gson
 import com.shurjomukhi.databindingapp.Util.ObjectV0
 import com.shurjomukhi.databindingapp.Util.responseLoanDetails
 import com.shurjomukhi.databindingapp.databinding.ActivityDynamicBinding

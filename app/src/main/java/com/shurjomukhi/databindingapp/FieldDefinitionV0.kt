@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class FieldDefinitionV0(
     @SerializedName("itemViewType")
-    var itemViewType:String?,
+    var itemViewType:Class<*>,
+    //var itemViewType:String?,
     @SerializedName("placeholderInObject")
     var placeholderInObject:String?,
     @SerializedName("itemViewName")
