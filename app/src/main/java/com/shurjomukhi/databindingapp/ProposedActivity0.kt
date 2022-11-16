@@ -1,9 +1,19 @@
 package com.shurjomukhi.databindingapp
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 
 class ProposedActivity0 : BaseShurjomukhiActivity() {
@@ -12,6 +22,7 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_proposed0)
+        childViews = HashMap<String,View>()
         setActivityTitle()
         setFieldDefinitions()
         defineContainerViewSetFromFieldDef()
@@ -27,10 +38,60 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
     }
 
     private fun defineContainerViewSetFromFieldDef() {
-        for (it in this.fields) {
-            when(it.itemViewType) {
-                type instanceof TextView: gen
-                FieldDefinition.ViewType.EditText
+        for (viewItem in this.fields) {
+            when(viewItem.itemViewType) {
+                TextView::class.java -> {
+
+                }
+                EditText::class.java -> {
+                    val view = LayoutInflater.from(this).inflate(R.layout.edit_text_material,null)
+                    view?.let{
+                        val til = view.findViewById<TextInputLayout>(R.id.tiLayout)
+                        val et = view.findViewById<TextInputEditText>(R.id.editText)
+                        til.hint = viewItem.itemViewHint
+                        til.tag = viewItem.itemViewHint
+                        et.setText(viewItem.itemValue)
+                        til.apply {
+                            if(parent != null){
+                                (parent as ViewGroup).removeView(this)
+                            }
+                        }
+                        viewItem.isAmountField?.let { isAmount->
+                            if(isAmount){
+                                var isEdting = false
+                                et.addTextChangedListener(object : TextWatcher {
+                                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                                        Log.d("Logg","beforeTextChanged ->"+p0.toString())
+                                    }
+
+                                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                                        Log.d("Logg","onTextChanged ->"+p0.toString())
+                                    }
+
+                                    override fun afterTextChanged(p0: Editable?) {
+                                        if(!isEdting){
+                                            isEdting = true
+                                            et.setText(Util.getMoneyFormat(Util.getNumeric(p0.toString())))
+                                            et.setSelection(et.text.toString().length)
+                                            Log.d("Logg","afterTextChanged ->"+p0.toString())
+                                            isEdting = false
+                                        }
+                                    }
+                                })
+                            }
+
+                        }
+                        //Add view to child view
+                        viewObjArray.add(til)
+                        container.addView(til)
+                    }
+                }
+                Button::class.java -> {
+
+                }
+                AutoCompleteTextView::class.java -> {
+
+                }
             }
         }
     }
@@ -43,7 +104,6 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
     private fun setFieldDefinitions() {
         val field0 = FieldDefinitionV0(isAmountField = false,
             itemViewType = TextView::class.java,
-            type = TextView.c,
             dropDownValues = null,
             placeholderInObject = "name",
             itemViewName = "Username",
@@ -84,7 +144,7 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
         this.fields.add(field1);
 
         val field2 = FieldDefinitionV0(isAmountField = true,
-            itemViewType = FieldDefinition.ViewType.DropDown.name,
+            itemViewType = AutoCompleteTextView::class.java,
             dropDownValues = arrayListOf("Dhaka", "Cumilla", "Feni", "Chadpur"),
             placeholderInObject = null,
             itemViewName = "District",
@@ -115,7 +175,7 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
         this.fields.add(field2);
 
         val field3 = FieldDefinitionV0(isAmountField = false,
-            itemViewType = FieldDefinition.ViewType.Button.name,
+            itemViewType = Button::class.java,
             dropDownValues = null,
             placeholderInObject = null,
             itemViewName = "Go To Home",
