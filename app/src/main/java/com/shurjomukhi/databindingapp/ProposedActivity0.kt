@@ -15,7 +15,6 @@ class ProposedActivity0 : BaseShurjomukhiActivity() {
 
         setDataFromIntent()
 
-
     }
 
     private fun setDataFromIntent() {

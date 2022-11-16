@@ -20,7 +20,7 @@ open class BaseShurjomukhiActivity: AppCompatActivity() {
     /** page or activity title */
     protected lateinit var pageTitle:String
     /** Fields to show in main container in this page layout */
-    protected lateinit var fields:List<FieldDefinitionV0>
+    protected lateinit var fields:MutableList<FieldDefinitionV0>
     /** View generated in container based on field definiton, searchable by field name or id */
     protected lateinit var childViews:Map<String, View>
     /** Top (main) container which will hold all the fields (field views) */
