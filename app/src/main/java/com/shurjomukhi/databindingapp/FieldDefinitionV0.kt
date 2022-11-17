@@ -28,6 +28,7 @@ data class FieldDefinitionV0(
     val url:String?,
     @SerializedName("dropDownValues")
     val dropDownValues:ArrayList<String>?,
+
     val onSelectionDropDown:(String) -> Unit,
     val validationCheck: (String) -> Boolean
 ) : Parcelable{
